@@ -108,9 +108,10 @@ box(53, 24, 21, 11.5, "Deep Learning",
 box(78, 24, 19.5, 11.5, "ML–DL Integration",
     "embeddings →\nXGBoost / Ridge\n8-model fusion")
 route([(74, 29.75), (78, 29.75)])
-# bus: both split boxes merge left, run down, distribute over the model boxes
-route([(78.5, 70.25), (76, 70.25), (76, 37.6)], head=False)
-route([(78.5, 54.75), (76, 54.75)], head=False)
+# the two regime boxes are terminal descriptors; the model stage is fed by one
+# short trunk from the split diamond, routed through clear space (no line may
+# cross the body of another panel)
+route([(69, 58.25), (69, 37.6)], head=False)
 ax.plot([13.5, 87.75], [37.6, 37.6], color=BK, lw=1.2, zorder=3)
 for xc in (13.5, 38.5, 63.5, 87.75):
     route([(xc, 37.6), (xc, 35.5)])
