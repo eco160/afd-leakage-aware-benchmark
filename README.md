@@ -25,8 +25,9 @@ Modern Technologies Approaches to the Study of Antioxidant Capacity in Food Prod
 | Category median | 0.442 | 0.464 | 0.022 |
 
 Key findings: (1) 39.4% of records share a normalised product name; under the literature's
-default random split, **45% of k-NN's advantage over the category median is pure name-twin
-lookup**. (2) Engineered TF-IDF features beat learned character embeddings at this sample
+default random split, **45% of k-NN's advantage over the category median is reproduced by a
+memorization baseline that merely retrieves identically named training records**.
+(2) Engineered TF-IDF features beat learned character embeddings at this sample
 size (Ridge > char-CNN/BiLSTM on 0/5 seeds each). (3) The equal-weight fusion of all eight
 learned models is the only method that beats Ridge (4/5 seeds) and it cuts seed-to-seed SD
 by a factor of ~2.6 (0.027 → 0.011). All models are controlled by y-permutation floors ≈ 0.
