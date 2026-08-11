@@ -1,0 +1,95 @@
+{
+ "model": "fusion_all",
+ "runs": {
+  "grouped_s0_real": {
+   "r2": 0.6683225474644712,
+   "rmse": 0.7076737341557093,
+   "mae": 0.40552662177929955,
+   "spearman": 0.8800692437771301,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "grouped_s1_real": {
+   "r2": 0.6895882844469104,
+   "rmse": 0.6981201647258749,
+   "mae": 0.38308705756756534,
+   "spearman": 0.838599780107479,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "grouped_s2_real": {
+   "r2": 0.6967947267906325,
+   "rmse": 0.6578753410582889,
+   "mae": 0.37856033840887005,
+   "spearman": 0.8409169496451873,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "grouped_s3_real": {
+   "r2": 0.6830608850217522,
+   "rmse": 0.7013820024087979,
+   "mae": 0.4052714385543646,
+   "spearman": 0.8355930227767044,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "grouped_s4_real": {
+   "r2": 0.6809216130047967,
+   "rmse": 0.6932212834104814,
+   "mae": 0.41105978923901604,
+   "spearman": 0.8294387621638406,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "random_s0_real": {
+   "r2": 0.6580889343920842,
+   "rmse": 0.6624547401922855,
+   "mae": 0.37806929840738956,
+   "spearman": 0.8325744181814859,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "random_s1_real": {
+   "r2": 0.6798121263549861,
+   "rmse": 0.6575123152390625,
+   "mae": 0.34052021013504025,
+   "spearman": 0.8488780697586716,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "random_s2_real": {
+   "r2": 0.7644943974479403,
+   "rmse": 0.6190451936535449,
+   "mae": 0.35182533341221245,
+   "spearman": 0.8643121694350938,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "random_s3_real": {
+   "r2": 0.728798850554859,
+   "rmse": 0.6299979623726774,
+   "mae": 0.33568540658882595,
+   "spearman": 0.8835599058725168,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  },
+  "random_s4_real": {
+   "r2": 0.6996470621031939,
+   "rmse": 0.6246189297571674,
+   "mae": 0.3505896028511173,
+   "spearman": 0.8414603809398025,
+   "mode": "real",
+   "members": "ridge,lgbm,xgb,rf,knn,mlp,cnn,bilstm",
+   "seconds": 0.0
+  }
+ }
+}
