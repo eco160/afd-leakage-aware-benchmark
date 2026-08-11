@@ -1,0 +1,95 @@
+{
+ "model": "fusion_ltd",
+ "runs": {
+  "grouped_s0_real": {
+   "r2": 0.65944125709716,
+   "rmse": 0.7170857945097042,
+   "mae": 0.4121231455270059,
+   "spearman": 0.867983334144801,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "grouped_s1_real": {
+   "r2": 0.6832092945202313,
+   "rmse": 0.705256903516557,
+   "mae": 0.3903704630151385,
+   "spearman": 0.8204494688346172,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "grouped_s2_real": {
+   "r2": 0.6955442597537529,
+   "rmse": 0.6592305367936574,
+   "mae": 0.3874509537529275,
+   "spearman": 0.8279364086872535,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "grouped_s3_real": {
+   "r2": 0.6783980205045657,
+   "rmse": 0.7065225923842097,
+   "mae": 0.41728240532854033,
+   "spearman": 0.8110798464687178,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "grouped_s4_real": {
+   "r2": 0.6794742637950877,
+   "rmse": 0.6947917408642801,
+   "mae": 0.40778200040073054,
+   "spearman": 0.8094963023876773,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "random_s0_real": {
+   "r2": 0.6328938620430404,
+   "rmse": 0.6864287369592045,
+   "mae": 0.38865617953288506,
+   "spearman": 0.8152059799494141,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "random_s1_real": {
+   "r2": 0.6700803424135608,
+   "rmse": 0.6674297300704614,
+   "mae": 0.34379437558992515,
+   "spearman": 0.8376919677924776,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "random_s2_real": {
+   "r2": 0.7503625970489332,
+   "rmse": 0.6373479046231251,
+   "mae": 0.36419541590493826,
+   "spearman": 0.8459165713606335,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "random_s3_real": {
+   "r2": 0.7236042125716713,
+   "rmse": 0.636002893782006,
+   "mae": 0.3309894677107935,
+   "spearman": 0.8743142507925673,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  },
+  "random_s4_real": {
+   "r2": 0.6922598915088465,
+   "rmse": 0.6322535128034502,
+   "mae": 0.3541552940485295,
+   "spearman": 0.830618976309325,
+   "mode": "real",
+   "members": "ridge,lgbm,cnn",
+   "seconds": 0.0
+  }
+ }
+}
