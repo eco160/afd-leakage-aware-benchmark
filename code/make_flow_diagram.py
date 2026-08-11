@@ -51,15 +51,6 @@ def box(x, y, w, h, title, body=None):
                 fontsize=7.6, fontweight="bold", color=BK, zorder=5)
 
 
-def diamond(cx, cy, w, h, label):
-    ax.add_patch(Polygon([(cx - w / 2, cy), (cx, cy + h / 2),
-                          (cx + w / 2, cy), (cx, cy - h / 2)], closed=True,
-                         facecolor="white", edgecolor=BK, linewidth=1.1,
-                         zorder=4))
-    ax.text(cx, cy, label, ha="center", va="center", fontsize=7.2,
-            fontweight="bold", color=BK, zorder=5)
-
-
 def route(pts, head=True):
     """Orthogonal connector through waypoints; arrowhead on the final leg."""
     if len(pts) > 2:
@@ -84,18 +75,21 @@ route([(16.25, 65), (16.25, 63)])
 route([(16.25, 55.5), (16.25, 54)])
 
 # ============ 2. Split design ===================================================
+# The partitioning step is a PROCESS box with two dataset outputs (cf. the
+# author's published "Execute DoE" convention) -- not a decision diamond.
 panel(34.5, 45.5, 65, 32, "2. Leakage-Aware Split Design")
-box(37, 58.5, 23.5, 8.5, "Name Normalisation",
+box(37, 59.5, 24, 9, "Name Normalisation",
     f"{share:.1%} of records share\na product name")
-diamond(69, 62.75, 11.5, 9, "Split\n× 5 seeds")
-box(78.5, 66.5, 20, 7.5, "Grouped by Name",
-    "fit / val / test\n(leakage-free)")
-box(78.5, 51, 20, 7.5, "Random Split",
-    f"fit / val / test\n({leak:.0%} duplicates in test)")
-route([(29.5, 50.25), (33, 50.25), (33, 62.75), (37, 62.75)])
-route([(60.5, 62.75), (63.25, 62.75)])
-route([(69, 67.25), (69, 70.25), (78.5, 70.25)])
-route([(69, 58.25), (69, 54.75), (78.5, 54.75)])
+box(67, 59.5, 29, 9, "Data Partitioning",
+    "5 seeds per regime\n(fit / validation / 20% test)")
+box(63.5, 46.5, 16.5, 8, "Grouped by Name",
+    "no shared name\nacross partitions")
+box(82, 46.5, 16.5, 8, "Random Split",
+    f"literature default\n({leak:.0%} test duplicates)")
+route([(29.5, 50.25), (33, 50.25), (33, 64), (37, 64)])
+route([(61, 64), (67, 64)])
+route([(71.75, 59.5), (71.75, 54.5)])
+route([(90.25, 59.5), (90.25, 54.5)])
 
 # ============ 3. Model development ==============================================
 panel(0.5, 20.5, 99, 22, "3. Model Development")
@@ -108,10 +102,12 @@ box(53, 24, 21, 11.5, "Deep Learning",
 box(78, 24, 19.5, 11.5, "ML–DL Integration",
     "embeddings →\nXGBoost / Ridge\n8-model fusion")
 route([(74, 29.75), (78, 29.75)])
-# the two regime boxes are terminal descriptors; the model stage is fed by one
-# short trunk from the split diamond, routed through clear space (no line may
-# cross the body of another panel)
-route([(69, 58.25), (69, 37.6)], head=False)
+# both regime datasets feed model development: short drops merge on a rail in
+# the inter-panel gap, then one trunk enters the distribution rail
+route([(71.75, 46.5), (71.75, 43.8)], head=False)
+route([(90.25, 46.5), (90.25, 43.8)], head=False)
+ax.plot([71.75, 90.25], [43.8, 43.8], color=BK, lw=1.2, zorder=3)
+route([(81, 43.8), (81, 37.6)], head=False)
 ax.plot([13.5, 87.75], [37.6, 37.6], color=BK, lw=1.2, zorder=3)
 for xc in (13.5, 38.5, 63.5, 87.75):
     route([(xc, 37.6), (xc, 35.5)])
