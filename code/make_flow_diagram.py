@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Methodological flow diagram in the author's published flowchart convention
 (cf. Ozkat et al., Physica C 616 (2024) 1354430, Fig. 1): numbered stage
-containers with header bars, sharp rectangles, a split diamond, and orthogonal
+containers with header bars, sharp rectangles, and orthogonal
 elbow-routed arrows. Monochrome. Live numbers are read from the processed data.
 """
 import csv, json
@@ -113,7 +113,10 @@ route([(90.25, 46.5), (90.25, 43.8)], head=False)
 ax.plot([71.75, 90.25], [43.8, 43.8], color=BK, lw=1.2, zorder=3)
 route([(81, 43.8), (81, 37.6)], head=False)
 ax.plot([13.5, 87.75], [37.6, 37.6], color=BK, lw=1.2, zorder=3)
-for xc in (13.5, 38.5, 63.5, 87.75):
+# the split data feeds the three base families only; ML-DL Integration consumes
+# its inputs entirely through the lateral edges (embeddings from Deep Learning,
+# features/predictions from Classical ML), so it gets no data drop
+for xc in (13.5, 38.5, 87.75):
     route([(xc, 37.6), (xc, 35.5)])
 
 # ============ 4. Evaluation and diagnostics =====================================
