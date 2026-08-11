@@ -21,7 +21,7 @@ Modern Technologies Approaches to the Study of Antioxidant Capacity in Food Prod
 | XGBoost | 0.610 | 0.629 | 0.018 |
 | BiLSTM | 0.608 | 0.656 | 0.047 |
 | Random Forest | 0.573 | 0.621 | 0.048 |
-| Copy-paste (twin lookup) | 0.442 | 0.553 | **0.111** |
+| Memorization baseline (duplicate-name lookup) | 0.442 | 0.553 | **0.111** |
 | Category median | 0.442 | 0.464 | 0.022 |
 
 Key findings: (1) 39.4% of records share a normalised product name; under the literature's
@@ -59,7 +59,7 @@ be regenerated without any training.
 
 - **Grouped split**: GroupShuffleSplit by normalised product name — no name straddles
   train/test. **Random split**: same sizes, the literature's default; 34.6–38.0% of its
-  test records have a same-name twin in training.
+  test records share a product name with a training record.
 - All feature fitting (TF-IDF vocabularies, category encoder, char vocab, embedding
   standardisation) on the fit partition only; val (group-aware) used solely for early
   stopping / hyperparameter selection; test untouched.
@@ -68,8 +68,8 @@ be regenerated without any training.
 - xgb/lgbm/cnn/bilstm train on fit (val reserved for early stopping); ridge/knn/rf refit
   on fit+val after selection — stated because cross-family comparisons then differ by
   ~15% effective training data.
-- Under the grouped regime the copy-paste predictor has no twins and reproduces the
-  category-median baseline **bit-identically** — a built-in correctness check.
+- Under the grouped regime the memorization baseline finds no duplicate names and reproduces
+  the category-median baseline **bit-identically** — a built-in correctness check.
 
 ## Data provenance
 

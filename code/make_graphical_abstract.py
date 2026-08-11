@@ -100,7 +100,7 @@ ax.text(50, 40.5, "18 models · 5 seeds", ha="center", fontsize=9.5,
         color=NAVY)
 ax.text(50, 36.8, "classical ML · deep learning · hybrids",
         ha="center", fontsize=8.6, color=NAVY)
-ax.text(50, 25.5, "permutation controls\n+ twin-lookup diagnostic",
+ax.text(50, 25.5, "permutation controls\n+ memorization baseline",
         ha="center", fontsize=8.6, color=NAVY, style="italic")
 
 arrow(64.5, 70)
@@ -109,8 +109,8 @@ arrow(64.5, 70)
 card(71, 26, "WHAT HOLDS UP")
 ax.text(84, 71.5, f"{twin_share:.0%} of k-NN's apparent skill",
         ha="center", fontsize=9.6, color=ACCENT, fontweight="bold")
-ax.text(84, 68, "= name-twin lookup, not learning", ha="center", fontsize=9,
-        color=NAVY)
+ax.text(84, 68, "= duplicate-record lookup, not learning", ha="center",
+        fontsize=9, color=NAVY)
 # small paired-bar glyph: grouped vs random for knn
 ax.add_patch(plt.Rectangle((78, 52), 5.4, 4.4, facecolor=ACCENT, edgecolor="none"))
 ax.add_patch(plt.Rectangle((78, 46), 5.4 * knn_g / knn_r, 4.4, facecolor=MID,

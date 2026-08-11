@@ -80,7 +80,7 @@ def agg(model):
 
 MODELS = [  # (file, display) — figure order is by grouped mean, computed below
     ("median_category", "Category median"),
-    ("copypaste", "Copy-paste (twin lookup)"),
+    ("copypaste", "Memorization baseline"),
     ("rf", "Random Forest"),
     ("bilstm", "BiLSTM"),
     ("knn", "k-NN"),
@@ -147,7 +147,7 @@ for i, k in enumerate(buckets):
 a1.set_xlabel("records sharing the same normalised product name")
 a1.set_ylabel("records")
 style(a1, ygrid=True)
-ptitle(a1, "a", f"{share:.1%} of records have a name twin")
+ptitle(a1, "a", f"{share:.1%} of records share a product name")
 
 top = [g for g, _ in Counter(groups).most_common(10)]
 for i, g in enumerate(reversed(top)):
@@ -210,7 +210,7 @@ style(a1, xgrid=True)
 ptitle(a1, "a", "Leakage inflation by model")
 
 steps = [("Category\nmedian", A["median_category"]["random"][0], BLUE_LIGHT),
-         ("+ name-twin\nlookup", A["copypaste"]["random"][0], ORANGE),
+         ("Memorization\nbaseline", A["copypaste"]["random"][0], ORANGE),
          ("k-NN", A["knn"]["random"][0], BLUE)]
 xs = range(3)
 a2.bar(xs, [s[1] for s in steps], width=0.6, color=[s[2] for s in steps], zorder=3)
@@ -229,7 +229,7 @@ a2.set_xticklabels([s[0] for s in steps], fontsize=7.5)
 a2.set_ylabel(r"test $R^2$, random split")
 a2.set_ylim(0, 0.78)
 style(a2, ygrid=True)
-ptitle(a2, "b", f"{frac:.0%} of the k-NN gain is twin lookup")
+ptitle(a2, "b", f"{frac:.0%} of the k-NN gain is duplicate-name lookup")
 fig.tight_layout(w_pad=2.5)
 save(fig, "fig4_mechanism")
 
