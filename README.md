@@ -30,7 +30,7 @@ memorization baseline that merely retrieves identically named training records**
 (2) Engineered TF-IDF features beat learned character embeddings at this sample
 size (Ridge > char-CNN/BiLSTM on 0/5 seeds each). (3) The equal-weight fusion of all eight
 learned models is the only method that beats Ridge (4/5 seeds) and it cuts seed-to-seed SD
-by a factor of ~2.6 (0.027 → 0.011). All models are controlled by y-permutation floors ≈ 0.
+by a factor of ~2.6 (0.027 → 0.011). All trained models are controlled by y-permutation floors ≈ 0 (the fusions have no separate permutation runs; each member model is individually controlled).
 
 ## Reproduce
 

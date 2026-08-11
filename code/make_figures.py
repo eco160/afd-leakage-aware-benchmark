@@ -121,7 +121,7 @@ a2.text(med + 0.12, a2.get_ylim()[1] * 0.93,
 ticks = [0, 1, 10, 100, 1000]
 a2.set_xticks([np.log1p(t) for t in ticks])
 a2.set_xticklabels([str(t) for t in ticks])
-a2.set_xlabel("FRAP (mmol/100 g, log scale)")
+a2.set_xlabel("FRAP (mmol/100 g; log(1+x) axis)")
 a2.set_ylabel("products")
 style(a2, ygrid=True)
 ptitle(a2, "b", "Four orders of magnitude")
@@ -149,7 +149,11 @@ a1.set_ylabel("records")
 style(a1, ygrid=True)
 ptitle(a1, "a", f"{share:.1%} of records share a product name")
 
-top = [g for g, _ in Counter(groups).most_common(10)]
+gvals = {}
+for g, v in zip(groups, y_raw):
+    gvals.setdefault(g, []).append(v)
+elig = {g: vs for g, vs in gvals.items() if len(vs) >= 2 and len(set(vs)) >= 2}
+top = sorted(elig, key=lambda g: (-len(elig[g]), g))[:10]
 for i, g in enumerate(reversed(top)):
     vv = np.log1p([y_raw[j] for j, gg in enumerate(groups) if gg == g])
     a2.scatter(vv, [i] * len(vv), s=26, color=BLUE, zorder=3,
@@ -160,7 +164,7 @@ a2.set_yticklabels([g if len(g) <= 30 else g[:28] + "…" for g in reversed(top)
 ticks = [0.1, 1, 10, 100]
 a2.set_xticks([np.log1p(t) for t in ticks])
 a2.set_xticklabels([str(t) for t in ticks])
-a2.set_xlabel("FRAP (mmol/100 g, log scale)")
+a2.set_xlabel("FRAP (mmol/100 g; log(1+x) axis)")
 style(a2, xgrid=True)
 ptitle(a2, "b", "Same name, different value: top-10 repeated products")
 fig.tight_layout(w_pad=2.5)
@@ -179,8 +183,11 @@ for row, i in enumerate(order):
     ax.errorbar(r[0], row, xerr=r[1], fmt="o", ms=6.5, color=ORANGE,
                 ecolor=ORANGE, elinewidth=1.2, capsize=2.5,
                 markeredgecolor="white", markeredgewidth=1.2, zorder=3)
-    if m in ("fusion_all", "ridge"):
+    if m == "fusion_all":
         ax.text(g[0], row + 0.38, f"{g[0]:.3f}", ha="center", va="bottom",
+                fontsize=7, color=INK2, fontweight="semibold")
+    elif m == "ridge":
+        ax.text(g[0] - g[1] - 0.015, row, f"{g[0]:.3f}", ha="right", va="center",
                 fontsize=7, color=INK2, fontweight="semibold")
 ax.set_yticks(range(len(order)))
 ax.set_yticklabels([MODELS[i][1] for i in order], fontsize=8)
@@ -240,10 +247,10 @@ rg = A["ridge"]["grouped"][2]
 fu = A["fusion_all"]["grouped"][2]
 for s in range(5):
     a1.plot([0, 1], [rg[s], fu[s]], color=GRID, lw=1.4, zorder=2)
-a1.scatter([0] * 5, rg, s=30, color=BLUE, zorder=3, edgecolors="white",
-           linewidths=1.4)
-a1.scatter([1] * 5, fu, s=30, color=BLUE, zorder=3, edgecolors="white",
-           linewidths=1.4)
+a1.scatter([0] * 5, rg, s=34, facecolors="white", edgecolors=BLUE, zorder=3,
+           linewidths=1.6)
+a1.scatter([1] * 5, fu, s=34, facecolors="white", edgecolors=BLUE, zorder=3,
+           linewidths=1.6)
 a1.set_xticks([0, 1])
 a1.set_xticklabels(["Ridge", "Fusion\n(8 models)"], fontsize=8)
 a1.set_xlim(-0.35, 1.35)

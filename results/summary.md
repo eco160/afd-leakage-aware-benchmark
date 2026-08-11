@@ -80,7 +80,7 @@ ridge = full feature set; abl_ridge_text = text features only; abl_ridge_cat = c
 
 ## 4. Leakage mechanics (grouped vs random)
 
-| Probe | Grouped R2 | Random R2 | Delta R2 | Grouped Spearman | Random Spearman | Twin fraction (grp / rand) |
+| Probe | Grouped R2 | Random R2 | Delta R2 | Grouped Spearman | Random Spearman | Duplicate-name fraction (grouped / random) |
 |---|---|---|---|---|---|---|
 | copypaste | 0.442 +/- 0.052 | 0.553 +/- 0.027 | 0.111 | 0.707 +/- 0.032 | 0.781 +/- 0.012 | 0.000 +/- 0.000 / 0.365 +/- 0.013 |
 | knn | 0.610 +/- 0.058 | 0.663 +/- 0.071 | 0.053 | 0.816 +/- 0.023 | 0.839 +/- 0.017 | - |
