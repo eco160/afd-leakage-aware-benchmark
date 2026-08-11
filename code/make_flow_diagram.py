@@ -93,15 +93,19 @@ route([(90.25, 59.5), (90.25, 54.5)])
 
 # ============ 3. Model development ==============================================
 panel(0.5, 20.5, 99, 22, "3. Model Development")
+# integration sits BETWEEN its two input families: deep learning supplies the
+# embeddings (left arrow), classical ML supplies fusion-member predictions
+# (right arrow) -- both in-edges drawn, no crossings
 box(3, 24, 21, 11.5, "Baselines",
     "global median\ncategory median\nmemorization\n(duplicate lookup)")
-box(28, 24, 21, 11.5, "Classical ML",
-    "TF-IDF + category\nRidge · k-NN · RF\nXGBoost · LightGBM · MLP")
-box(53, 24, 21, 11.5, "Deep Learning",
+box(28, 24, 21, 11.5, "Deep Learning",
     "char-CNN · BiLSTM\n+ category embedding\n→ 192-d representations")
-box(78, 24, 19.5, 11.5, "ML–DL Integration",
-    "embeddings →\nXGBoost / Ridge\n8-model fusion")
-route([(74, 29.75), (78, 29.75)])
+box(53, 24, 21, 11.5, "ML–DL Integration",
+    "embeddings + TF-IDF →\nXGBoost / Ridge hybrids\nfusion of 8 models")
+box(78, 24, 19.5, 11.5, "Classical ML",
+    "TF-IDF + category\nRidge · k-NN · RF\nXGBoost · LightGBM · MLP")
+route([(49, 29.75), (53, 29.75)])
+route([(78, 29.75), (74, 29.75)])
 # both regime datasets feed model development: short drops merge on a rail in
 # the inter-panel gap, then one trunk enters the distribution rail
 route([(71.75, 46.5), (71.75, 43.8)], head=False)
@@ -115,7 +119,7 @@ for xc in (13.5, 38.5, 63.5, 87.75):
 # ============ 4. Evaluation and diagnostics =====================================
 panel(0.5, 1, 99, 16.5, "4. Evaluation and Diagnostics")
 box(3, 3, 45, 9, "Leakage-Aware Scoring",
-    "R² · RMSE · Spearman ρ on log(1+FRAP)\n"
+    "R² · RMSE · MAE · Spearman ρ on log(1+FRAP)\n"
     "5 paired seeds · y-permutation controls")
 box(55, 3, 42.5, 9, "Diagnostics",
     "ΔR² = random − grouped · memorization\n"
