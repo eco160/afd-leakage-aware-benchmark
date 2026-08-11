@@ -9,9 +9,9 @@ Modern Technologies Approaches to the Study of Antioxidant Capacity in Food Prod
 
 | Model | Grouped split | Random split | ΔR² (inflation) |
 |---|---|---|---|
-| **Fusion (8-model average)** | **0.684 ± 0.009** | 0.706 | — |
+| **Fusion (8-model average)** | **0.684 ± 0.011** | 0.706 | — |
 | Ridge (TF-IDF) | 0.674 ± 0.027 | 0.687 | 0.013 |
-| MLP (same TF-IDF) | 0.657 | 0.716 | −0.001 |
+| MLP (same TF-IDF) | 0.657 | 0.656 | −0.001 |
 | Hybrid Ridge (TF-IDF+emb) | 0.629 ± 0.013 | 0.673 | 0.044 |
 | Hybrid XGBoost (TF-IDF+emb) | 0.627 | 0.666 | 0.040 |
 | XGBoost on DL embeddings | 0.625 | 0.667 | 0.042 |
@@ -29,7 +29,7 @@ default random split, **45% of k-NN's advantage over the category median is pure
 lookup**. (2) Engineered TF-IDF features beat learned character embeddings at this sample
 size (Ridge > char-CNN/BiLSTM on 0/5 seeds each). (3) The equal-weight fusion of all eight
 learned models is the only method that beats Ridge (4/5 seeds) and it cuts seed-to-seed SD
-threefold. All models are controlled by y-permutation floors ≈ 0.
+by a factor of ~2.6 (0.027 → 0.011). All models are controlled by y-permutation floors ≈ 0.
 
 ## Reproduce
 
