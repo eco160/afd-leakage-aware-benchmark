@@ -32,6 +32,27 @@ size (Ridge > char-CNN/BiLSTM on 0/5 seeds each). (3) The equal-weight fusion of
 learned models is the only method that beats Ridge (4/5 seeds) and it cuts seed-to-seed SD
 by a factor of ~2.6 (0.027 → 0.011). All trained models are controlled by y-permutation floors ≈ 0 (the fusions have no separate permutation runs; each member model is individually controlled).
 
+## Post-hoc controls (run after the frozen benchmark, same protocol)
+
+| Control | Grouped split | Random split | Verdict |
+|---|---|---|---|
+| fastText (wiki-news 300d) + XGBoost | 0.628 ± 0.033 | 0.673 | loses to Ridge 0/5 seeds (−0.047) |
+| fastText (wiki-news 300d) + Ridge | 0.516 ± 0.027 | 0.562 | loses to Ridge 0/5 seeds (−0.158) |
+| Random Forest, validation-tuned (3000 feats/split) | 0.656 ± 0.021 | 0.678 | still below Ridge 0/5 seeds (−0.018) |
+
+**Pretrained-embedding control** (`code/pretrained_control.py`): mean-pooled pretrained
+fastText vectors + category one-hot under Ridge/XGBoost heads, identical frozen protocol
+(permutation controls included). Externally pre-trained static vectors perform on par with
+the corpus-trained deep embeddings (0.628 vs 0.625 under the same XGBoost head) and do not
+close the gap to TF-IDF: the deficit attaches to dense generic representations, not to
+missing pre-training or the character-level architectures.
+
+**RF sensitivity check** (`code/rf_sensitivity.py`): a 3×3 grid over features-per-split and
+minimum leaf size, validation-selected per regime and seed. Tuning lifts the forest by
++0.084 (grouped) and halves its leakage inflation (+0.048 → +0.022) but does not change the
+model ranking. Every fixed-config refit reproduces the frozen `results/rf.json` to machine
+precision (asserted in-script before checkpointing).
+
 ## Reproduce
 
 ```bash
@@ -48,6 +69,14 @@ for m in copypaste abl_ridge_text abl_ridge_cat hybrid_xgb_emb \
     python3 code/day4.py --model $m      # hybrids, ablations, diagnostics, fusion
 done
 python3 code/make_figures.py             # all manuscript figures from results/*.json
+
+# post-hoc controls (optional; not part of the frozen 18-predictor benchmark)
+curl -L -o raw/fasttext/wiki-news-300d-1M.vec.zip \
+    https://dl.fbaipublicfiles.com/fasttext/vectors-english/wiki-news-300d-1M.vec.zip
+# sha256: bdeb85f44892c505953e3654183e9cb0d792ee51be0992460593e27198d746f8
+python3 code/pretrained_control.py --model ft_ridge
+python3 code/pretrained_control.py --model ft_xgb
+python3 code/rf_sensitivity.py
 ```
 
 Total runtime ≈ 2–3 h on a 4-core laptop (no GPU needed). Every run checkpoints to

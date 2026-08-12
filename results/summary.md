@@ -93,3 +93,21 @@ ridge = full feature set; abl_ridge_text = text features only; abl_ridge_cat = c
 Notes (informational, not failures):
 - median_global grouped spearman is NaN for all seeds (constant predictor; Spearman undefined) - expected, reported as n/a
 - median_global random spearman is NaN for all seeds (constant predictor; Spearman undefined) - expected, reported as n/a
+
+## Post-hoc controls (2026-08-12, reviewer-response round)
+
+| model | regime | R2 (ddof=1) | perm mean | paired vs ridge (grouped) |
+|---|---|---|---|---|
+| ft_ridge | grouped | 0.516 +/- 0.027 | -0.206 | -0.158 +/- 0.026, 0/5 |
+| ft_ridge | random | 0.562 +/- 0.063 | -0.158 | |
+| ft_xgb | grouped | 0.628 +/- 0.033 | -0.022 | -0.047 +/- 0.031, 0/5 |
+| ft_xgb | random | 0.673 +/- 0.049 | -0.002 | |
+| rf tuned (val-selected, 3000 feats) | grouped | 0.656 +/- 0.021 | n/a | -0.018 +/- 0.008, 0/5 |
+| rf tuned | random | 0.678 +/- 0.053 | n/a | (2/5 random) |
+
+- fastText coverage: OOV token rate 3.2%, 36/3135 rows without any vector hit.
+- RF grid: 3x3 (max_features sqrt/1000/3000 x leaf 1/2/5); val selection chose 3000 features
+  every time (leaf 2 in 9/10 cases, leaf 1 once, random_s4).
+- Tuned-forest inflation +0.022 vs +0.048 fixed.
+- All 10 fixed-config refits reproduced results/rf.json to <= 1.1e-16 (asserted in-script).
+- Vectors: wiki-news-300d-1M.vec.zip, sha256 bdeb85f44892c505953e3654183e9cb0d792ee51be0992460593e27198d746f8.
