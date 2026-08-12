@@ -124,7 +124,7 @@ a2.set_xticklabels([str(t) for t in ticks])
 a2.set_xlabel("FRAP (mmol/100 g; log(1+x) axis)")
 a2.set_ylabel("products")
 style(a2, ygrid=True)
-ptitle(a2, "b", "Four orders of magnitude")
+ptitle(a2, "b", "More than four orders of magnitude")
 fig.tight_layout(w_pad=2.5)
 save(fig, "fig1_dataset")
 

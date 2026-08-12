@@ -20,24 +20,38 @@ Frozen 2026-08-10 (v1).
 | antioxidant_mmol_per_100g | 100% | FRAP, mmol/100 g |
 | comment_ref | 99.1% | reference-note number(s) from the source, e.g. "1, 3" |
 
-## Validation against the source article (Table 1 of the paper)
+## Validation record
 
-Per-category n, mean, median and max recomputed from this CSV and compared with the published
-descriptive statistics: **21 of 24 categories reproduce exactly** (within rounding). Overall
-n = 3,135 vs 3,139 (−4).
+Validation proceeded in two stages, both fully independent of the extraction code.
 
-The three non-matching categories are a **source-level inconsistency, not an extraction error**:
-19 products ("Biscuits, refrigerated…" ×11, "English muffins…" ×8) are printed under
-*Category 11 Grains and grain products* in the PDF but counted under *Snacks* (cat 20) and
-*Desserts and cakes* (cat 6) in the article's Table 1 (published: cat 6 n=134, cat 11 n=227,
-cat 20 n=66; PDF: 125/246/55). Means/medians/maxima of all other 21 categories match, including
-the extremes (cat 12 max 2897.11 = dried amla-based preparation; cat 2 max 1347.83; cat 24 mean
-98.58). We keep the PDF's own placement and note the discrepancy rather than silently "fixing"
-either source.
+**Stage 1 — faithfulness to the printed supplement.** An independent value-level census of
+the supplement (values anchored on the antioxidant/comment columns, no product-name parsing)
+was compared with this CSV. Per-category record counts and value sums match **exactly in 23
+of 24 categories**. The single difference: one record of 0.17 mmol/100 g in *Mixed food
+entrees* (supplement count 189, CSV 188) was not recovered, because of an unusually wrapped
+line. This is the only extraction loss relative to the printed supplement.
 
-Remaining −4 vs (−1 net of the 19/20 shift): one record each lost in categories 2, 17, 22 (line
-pairs merged where two records share one wrapped block) and the 19↔20 balance. Documented, not
-hidden.
+**Stage 2 — agreement with the article's summary table.** Recomputed per-category
+n/mean/median/max agree with the article's Table 1 within published rounding for most
+categories. Every residual difference traces to an inconsistency internal to the source:
+
+- **19-product reassignment**: 11 "Biscuits, refrigerated…" and 8 "English muffins…" are
+  printed under *Grains and grain products* in the supplement but tallied under *Snacks* and
+  *Desserts and cakes* in the article. The article's tallies imply a twentieth such product
+  that is absent from the printed supplement.
+- **Three phantom records**: the article's category counts sum to 3139, but the printed
+  supplement contains 3136 extractable records. One record each in *Beverages* (article 283
+  vs supplement 282), *Spices and herbs* (425 vs 424), and the reassignment group is tallied
+  in the article yet absent from the supplement.
+- **Two article-side typographical values**: cat 21 maximum (article 4.67; the supplement's
+  own product listing gives 4.66 for "Sauce, taco, medium") and cat 1 median (article 3.34;
+  the exact 60th of 119 sorted values is 3.35).
+- **One source-inherited duplicate row**: "Rice, white, long grain / Canilla / USA / 0.1"
+  appears twice, exactly as printed twice in the supplement. It is retained faithfully.
+
+The supplement's own placements and values are preserved throughout; nothing was "corrected"
+toward the article. Coverage: 3135 of 3136 supplement records (99.97%), or 3135 of the
+article's 3139 tallied records (99.87%).
 
 ## Properties relevant to modelling
 
